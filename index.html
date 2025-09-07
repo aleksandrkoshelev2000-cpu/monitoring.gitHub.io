@@ -22,9 +22,6 @@
         }
 
         .admin-button {
-            position: fixed; /* Фиксированное положение */
-            top: 20px;
-            right: 20px;
             padding: 10px 15px;
             background-color: #2196F3;
             color: white;
@@ -32,11 +29,25 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            z-index: 1000; /* Обеспечение того, чтобы кнопка была поверх других элементов */
+            margin-bottom: 20px; /* Добавляем отступ снизу для лучшего отображения */
         }
 
         .admin-button:hover {
             background-color: #1976D2;
+        }
+
+        .confirm-button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #f44336; /* Красный цвет для кнопки очистки */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .confirm-button:hover {
+            background-color: #d32f2f;
         }
 
         table {
@@ -128,6 +139,7 @@ document.write(day[d.getDay()] + " " + d.getDate() + " " + month[d.getMonth()] +
     <th>Отсутствуют по болезни</th>
     <th>Действие</th>
   </tr>
+  <!-- Пример классов -->
   <tr>
     <td>1А</td>
     <td>Жемчуева О.А.</td>
@@ -136,81 +148,11 @@ document.write(day[d.getDay()] + " " + d.getDate() + " " + month[d.getMonth()] +
     <td><button class="save-button" onclick="saveData('1А', this)">Сохранить</button></td>
   </tr>
   <tr>
-    <td>1Б</td>
-    <td>Шорохова И.С</td>
-    <td>32</td>
-    <td contenteditable="true" data-class="1Б" onblur="calculateSums()" id="absent-1Б">0</td>
-    <td><button class="save-button" onclick="saveData('1Б', this)">Сохранить</button></td>
-  </tr>
-  <tr>
-    <td>1В</td>
-    <td>Маркарова Е.В.</td>
-    <td>33</td>
-    <td contenteditable="true" data-class="1В" onblur="calculateSums()" id="absent-1В">0</td>
-    <td><button class="save-button" onclick="saveData('1В', this)">Сохранить</button></td>
-  </tr>
-  <tr>
-    <td>1Г</td>
-    <td>Лямкина Г.А.</td>
-    <td>33</td>
-    <td contenteditable="true" data-class="1Г" onblur="calculateSums()" id="absent-1Г">0</td>
-    <td><button class="save-button" onclick="saveData('1Г', this)">Сохранить</button></td>
-  </tr>
-  <tr>
-    <td>1Д</td>
-    <td>Иванова Е.А.</td>
-    <td>33</td>
-    <td contenteditable="true" data-class="1Д" onblur="calculateSums()" id="absent-1Д">0</td>
-    <td><button class="save-button" onclick="saveData('1Д', this)">Сохранить</button></td>
-  </tr>
-  <tr>
     <td>2А</td>
     <td>Каржавина Т.А.</td>
     <td>27</td>
     <td contenteditable="true" data-class="2А" onblur="calculateSums()" id="absent-2А">0</td>
     <td><button class="save-button" onclick="saveData('2А', this)">Сохранить</button></td>
-  </tr>
-  <tr>
-    <td>2Б</td>
-    <td>Щербакова С.Н.</td>
-    <td>31</td>
-    <td contenteditable="true" data-class="2Б" onblur="calculateSums()" id="absent-2Б">0</td>
-    <td><button class="save-button" onclick="saveData('2Б', this)">Сохранить</button></td>
-  </tr>
-  <tr>
-    <td>2В</td>
-    <td>Хоменко О.В.</td>
-    <td>31</td>
-    <td contenteditable="true" data-class="2В" onblur="calculateSums()" id="absent-2В">0</td>
-    <td><button class="save-button" onclick="saveData('2В', this)">Сохранить</button></td>
-  </tr>
-  <tr>
-    <td>3А</td>
-    <td>Кравцова Т.Н.</td>
-    <td>32</td>
-    <td contenteditable="true" data-class="3А" onblur="calculateSums()" id="absent-3А">0</td>
-    <td><button class="save-button" onclick="saveData('3А', this)">Сохранить</button></td>
-  </tr>
-  <tr>
-    <td>3Б</td>
-    <td>Колмагорова А.Д.</td>
-    <td>32</td>
-    <td contenteditable="true" data-class="3Б" onblur="calculateSums()" id="absent-3Б">0</td>
-    <td><button class="save-button" onclick="saveData('3Б', this)">Сохранить</button></td>
-  </tr>
-  <tr>
-    <td>3В</td>
-    <td>Кохан М.А.</td>
-    <td>34</td>
-    <td contenteditable="true" data-class="3В" onblur="calculateSums()" id="absent-3В">0</td>
-    <td><button class="save-button" onclick="saveData('3В', this)">Сохранить</button></td>
-  </tr>
-  <tr>
-    <td>4А</td>
-    <td>Шорохова И.С</td>
-    <td>32</td>
-    <td contenteditable="true" data-class="4А" onblur="calculateSums()" id="absent-4А">0</td>
-    <td><button class="save-button" onclick="saveData('4А', this)">Сохранить</button></td>
   </tr>
   <tr>
     <td></td>
@@ -243,17 +185,40 @@ function openAdminPage() {
     const password = prompt("Введите пароль для доступа к странице администратора:");
     if (password === "admin123") { // Замените "admin123" на ваш желаемый пароль
         alert("Добро пожаловать, администратор!");
-        // Открытие новой страницы
-        // window.location.href = "admin_page.html"; // Ссылка на страницу администратора
+        promptClearForm(); // Запрос на подтверждение очистки формы
     } else {
         alert("Неверный пароль!");
     }
 }
 
+function promptClearForm() {
+    const confirmation = confirm("Вы хотите очистить форму?");
+    if (confirmation) {
+        clearForm(); // Вызываем функцию очистки формы
+        localStorage.removeItem('classData'); // Удаляем данные из localStorage
+    }
+}
+
+function clearForm() {
+    const table = document.getElementById('mainTab');
+    const rows = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < rows.length - 1; i++) { // Пропускаем заголовок и итоговую строку
+        const absentCell = rows[i].cells[3];
+        absentCell.innerText = '0'; // Сбрасываем значение отсутствующих
+    }
+    calculateSums(); // Пересчитываем итоги
+}
+
 function saveData(className, button) {
     const absentCount = document.getElementById(`absent-${className}`).innerText;
     if (absentCount) {
-        localStorage.setItem(className, absentCount);
+        // Получаем данные из localStorage
+        let classData = JSON.parse(localStorage.getItem('classData')) || {};
+        
+        // Сохраняем текущие данные
+        classData[className] = absentCount;
+        localStorage.setItem('classData', JSON.stringify(classData));
         
         // Меняем текст и цвет кнопки
         button.innerText = "СОХРАНЕНО";
@@ -266,13 +231,14 @@ function saveData(className, button) {
 }
 
 function loadSavedData() {
-    const classes = ["1А", "1Б", "1В", "1Г", "1Д", "2А", "2Б", "2В", "3А", "3Б", "3В", "4А"];
-    classes.forEach(className => {
-        const savedData = localStorage.getItem(className);
-        if (savedData) {
-            document.getElementById(`absent-${className}`).innerText = savedData;
+    const classData = JSON.parse(localStorage.getItem('classData')) || {};
+    
+    for (const [className, absentCount] of Object.entries(classData)) {
+        const absentCell = document.getElementById(`absent-${className}`);
+        if (absentCell) {
+            absentCell.innerText = absentCount; // Загружаем сохранённые данные
         }
-    });
+    }
 }
 
 // Загрузка сохранённых данных при инициализации страницы

@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 
 const router = express.Router();
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Ваш токен доступа
+const GITHUB_TOKEN = process.env.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; // Ваш токен доступа
 const REPO_OWNER = 'YOUR_GITHUB_USERNAME'; // Ваше имя пользователя
 const REPO_NAME = 'monitoring.gitHub.io'; // Имя вашего репозитория
 const FILE_PATH = 'data.json'; // Путь к файлу в репозитории

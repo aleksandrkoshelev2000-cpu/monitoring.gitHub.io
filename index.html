@@ -1,4 +1,4 @@
-<html <html lang="ru">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
         }
 
         .admin-button {
-            position: absolute;
+            position: fixed; /* Фиксированное положение */
             top: 20px;
             right: 20px;
             padding: 10px 15px;
@@ -32,6 +32,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            z-index: 1000; /* Обеспечение того, чтобы кнопка была поверх других элементов */
         }
 
         .admin-button:hover {
@@ -97,6 +98,11 @@
         .save-button:hover {
             background-color: #388E3C;
         }
+
+        .saved {
+            background-color: #FFD700; /* Золотистый цвет для кнопки после сохранения */
+            color: black; /* Цвет текста после сохранения */
+        }
     </style>
 </head>
 <body>
@@ -126,92 +132,85 @@ document.write(day[d.getDay()] + " " + d.getDate() + " " + month[d.getMonth()] +
     <td>1А</td>
     <td>Жемчуева О.А.</td>
     <td>33</td>
-    <td contenteditable="true" data-class="1А" onblur="calculateSums()" id="absent-1A">0</td>
-    <td><button class="save-button" onclick="saveData('1А')">Сохранить</button></td>
+    <td contenteditable="true" data-class="1А" onblur="calculateSums()" id="absent-1А">0</td>
+    <td><button class="save-button" onclick="saveData('1А', this)">Сохранить</button></td>
   </tr>
   <tr>
     <td>1Б</td>
     <td>Шорохова И.С</td>
     <td>32</td>
-    <td contenteditable="true" data-class="1Б" onblur="calculateSums()" id="absent-1B">0</td>
-    <td><button class="save-button" onclick="saveData('1Б')">Сохранить</button></td>
+    <td contenteditable="true" data-class="1Б" onblur="calculateSums()" id="absent-1Б">0</td>
+    <td><button class="save-button" onclick="saveData('1Б', this)">Сохранить</button></td>
   </tr>
   <tr>
     <td>1В</td>
     <td>Маркарова Е.В.</td>
     <td>33</td>
-    <td contenteditable="true" data-class="1В" onblur="calculateSums()" id="absent-1V">0</td>
-    <td><button class="save-button" onclick="saveData('1В')">Сохранить</button></td>
+    <td contenteditable="true" data-class="1В" onblur="calculateSums()" id="absent-1В">0</td>
+    <td><button class="save-button" onclick="saveData('1В', this)">Сохранить</button></td>
   </tr>
   <tr>
     <td>1Г</td>
     <td>Лямкина Г.А.</td>
     <td>33</td>
-    <td contenteditable="true" data-class="1Г" onblur="calculateSums()" id="absent-1G">0</td>
-    <td><button class="save-button" onclick="saveData('1Г')">Сохранить</button></td>
+    <td contenteditable="true" data-class="1Г" onblur="calculateSums()" id="absent-1Г">0</td>
+    <td><button class="save-button" onclick="saveData('1Г', this)">Сохранить</button></td>
   </tr>
   <tr>
     <td>1Д</td>
     <td>Иванова Е.А.</td>
     <td>33</td>
-    <td contenteditable="true" data-class="1Д" onblur="calculateSums()" id="absent-1D">0</td>
-    <td><button class="save-button" onclick="saveData('1Д')">Сохранить</button></td>
+    <td contenteditable="true" data-class="1Д" onblur="calculateSums()" id="absent-1Д">0</td>
+    <td><button class="save-button" onclick="saveData('1Д', this)">Сохранить</button></td>
   </tr>
   <tr>
     <td>2А</td>
     <td>Каржавина Т.А.</td>
     <td>27</td>
-    <td contenteditable="true" data-class="2А" onblur="calculateSums()" id="absent-2A">0</td>
-    <td><button class="save-button" onclick="saveData('2А')">Сохранить</button></td>
+    <td contenteditable="true" data-class="2А" onblur="calculateSums()" id="absent-2А">0</td>
+    <td><button class="save-button" onclick="saveData('2А', this)">Сохранить</button></td>
   </tr>
   <tr>
     <td>2Б</td>
     <td>Щербакова С.Н.</td>
     <td>31</td>
     <td contenteditable="true" data-class="2Б" onblur="calculateSums()" id="absent-2Б">0</td>
-    <td><button class="save-button" onclick="saveData('2Б')">Сохранить</button></td>
+    <td><button class="save-button" onclick="saveData('2Б', this)">Сохранить</button></td>
   </tr>
   <tr>
     <td>2В</td>
     <td>Хоменко О.В.</td>
     <td>31</td>
     <td contenteditable="true" data-class="2В" onblur="calculateSums()" id="absent-2В">0</td>
-    <td><button class="save-button" onclick="saveData('2В')">Сохранить</button></td>
+    <td><button class="save-button" onclick="saveData('2В', this)">Сохранить</button></td>
   </tr>
   <tr>
     <td>3А</td>
     <td>Кравцова Т.Н.</td>
     <td>32</td>
     <td contenteditable="true" data-class="3А" onblur="calculateSums()" id="absent-3А">0</td>
-    <td><button class="save-button" onclick="saveData('3А')">Сохранить</button></td>
+    <td><button class="save-button" onclick="saveData('3А', this)">Сохранить</button></td>
   </tr>
   <tr>
     <td>3Б</td>
     <td>Колмагорова А.Д.</td>
     <td>32</td>
     <td contenteditable="true" data-class="3Б" onblur="calculateSums()" id="absent-3Б">0</td>
-    <td><button class="save-button" onclick="saveData('3Б')">Сохранить</button></td>
+    <td><button class="save-button" onclick="saveData('3Б', this)">Сохранить</button></td>
   </tr>
   <tr>
     <td>3В</td>
     <td>Кохан М.А.</td>
     <td>34</td>
     <td contenteditable="true" data-class="3В" onblur="calculateSums()" id="absent-3В">0</td>
-    <td><button class="save-button" onclick="saveData('3В')">Сохранить</button></td>
+    <td><button class="save-button" onclick="saveData('3В', this)">Сохранить</button></td>
   </tr>
   <tr>
     <td>4А</td>
     <td>Шорохова И.С</td>
     <td>32</td>
     <td contenteditable="true" data-class="4А" onblur="calculateSums()" id="absent-4А">0</td>
-    <td><button class="save-button" onclick="saveData('4А')">Сохранить</button></td>
-  </tr>
-    <tr>
-    <td>4А</td>
-    <td>Шорохова И.С</td>
-    <td>32</td>
-    <td contenteditable="true" data-class="4А" onblur="calculateSums()" id="absent-4А">0</td>
-    <td><button class="save-button" onclick="saveData('4А')">Сохранить</button></td>
+    <td><button class="save-button" onclick="saveData('4А', this)">Сохранить</button></td>
   </tr>
   <tr>
     <td></td>
@@ -244,17 +243,22 @@ function openAdminPage() {
     const password = prompt("Введите пароль для доступа к странице администратора:");
     if (password === "admin123") { // Замените "admin123" на ваш желаемый пароль
         alert("Добро пожаловать, администратор!");
-        // Открытие новой страницы (в данном случае используется alert вместо реального перехода)
+        // Открытие новой страницы
         // window.location.href = "admin_page.html"; // Ссылка на страницу администратора
     } else {
         alert("Неверный пароль!");
     }
 }
 
-function saveData(className) {
+function saveData(className, button) {
     const absentCount = document.getElementById(`absent-${className}`).innerText;
     if (absentCount) {
         localStorage.setItem(className, absentCount);
+        
+        // Меняем текст и цвет кнопки
+        button.innerText = "СОХРАНЕНО";
+        button.classList.add("saved");
+        
         alert(`Данные для класса ${className} сохранены!`);
     } else {
         alert(`Введите число для класса ${className}.`);
@@ -279,5 +283,4 @@ window.onload = function() {
 </script>
 
 </body>
-
 </html>

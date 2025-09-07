@@ -5,7 +5,7 @@ const axios = require('axios');
 const router = express.Router();
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Ваш токен доступа
 const REPO_OWNER = 'YOUR_GITHUB_USERNAME'; // Ваше имя пользователя
-const REPO_NAME = 'student-data'; // Имя вашего репозитория
+const REPO_NAME = 'monitoring.gitHub.io'; // Имя вашего репозитория
 const FILE_PATH = 'data.json'; // Путь к файлу в репозитории
 const API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
 

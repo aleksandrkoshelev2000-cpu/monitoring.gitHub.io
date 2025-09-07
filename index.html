@@ -1,0 +1,275 @@
+<html <html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мониторинг заболеваемости</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f9;
+            margin: 20px;
+            position: relative;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        h3 {
+            text-align: center;
+            color: #666;
+        }
+
+        .admin-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .admin-button:hover {
+            background-color: #1976D2;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        td[contenteditable="true"] {
+            background-color: #fff8c4;
+            transition: background-color 0.3s;
+        }
+
+        td[contenteditable="true"]:focus {
+            background-color: #e1f5fe;
+            border: 1px solid #4CAF50;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        tr:last-child {
+            font-weight: bold;
+            background-color: #e1e1e1;
+        }
+
+        #sumTotalStudents, #sumTotalAbsent {
+            background-color: #e0f7fa;
+        }
+
+        .save-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .save-button:hover {
+            background-color: #388E3C;
+        }
+    </style>
+</head>
+<body>
+
+<button class="admin-button" onclick="openAdminPage()">Для администратора</button>
+
+<h2>Мониторинг заболеваемости МАОУ Гимназия №11 "Гамония"</h2>
+<h3>Сегодня:
+<script language="javascript" type="text/javascript">
+// Текущая дата
+var d = new Date();
+var day = new Array("воскресенье","понедельник","вторник", "среда","четверг","пятница","суббота");
+var month = new Array("января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря");
+document.write(day[d.getDay()] + " " + d.getDate() + " " + month[d.getMonth()] + " " + d.getFullYear() + " г.");
+</script>
+</h3>
+
+<table id="mainTab">
+  <tr>
+    <th>Класс</th>
+    <th>Классный руководитель</th>
+    <th>Всего учащихся</th>
+    <th>Отсутствуют по болезни</th>
+    <th>Действие</th>
+  </tr>
+  <tr>
+    <td>1А</td>
+    <td>Жемчуева О.А.</td>
+    <td>33</td>
+    <td contenteditable="true" data-class="1А" onblur="calculateSums()" id="absent-1A">0</td>
+    <td><button class="save-button" onclick="saveData('1А')">Сохранить</button></td>
+  </tr>
+  <tr>
+    <td>1Б</td>
+    <td>Шорохова И.С</td>
+    <td>32</td>
+    <td contenteditable="true" data-class="1Б" onblur="calculateSums()" id="absent-1B">0</td>
+    <td><button class="save-button" onclick="saveData('1Б')">Сохранить</button></td>
+  </tr>
+  <tr>
+    <td>1В</td>
+    <td>Маркарова Е.В.</td>
+    <td>33</td>
+    <td contenteditable="true" data-class="1В" onblur="calculateSums()" id="absent-1V">0</td>
+    <td><button class="save-button" onclick="saveData('1В')">Сохранить</button></td>
+  </tr>
+  <tr>
+    <td>1Г</td>
+    <td>Лямкина Г.А.</td>
+    <td>33</td>
+    <td contenteditable="true" data-class="1Г" onblur="calculateSums()" id="absent-1G">0</td>
+    <td><button class="save-button" onclick="saveData('1Г')">Сохранить</button></td>
+  </tr>
+  <tr>
+    <td>1Д</td>
+    <td>Иванова Е.А.</td>
+    <td>33</td>
+    <td contenteditable="true" data-class="1Д" onblur="calculateSums()" id="absent-1D">0</td>
+    <td><button class="save-button" onclick="saveData('1Д')">Сохранить</button></td>
+  </tr>
+  <tr>
+    <td>2А</td>
+    <td>Каржавина Т.А.</td>
+    <td>27</td>
+    <td contenteditable="true" data-class="2А" onblur="calculateSums()" id="absent-2A">0</td>
+    <td><button class="save-button" onclick="saveData('2А')">Сохранить</button></td>
+  </tr>
+  <tr>
+    <td>2Б</td>
+    <td>Щербакова С.Н.</td>
+    <td>31</td>
+    <td contenteditable="true" data-class="2Б" onblur="calculateSums()" id="absent-2Б">0</td>
+    <td><button class="save-button" onclick="saveData('2Б')">Сохранить</button></td>
+  </tr>
+  <tr>
+    <td>2В</td>
+    <td>Хоменко О.В.</td>
+    <td>31</td>
+    <td contenteditable="true" data-class="2В" onblur="calculateSums()" id="absent-2В">0</td>
+    <td><button class="save-button" onclick="saveData('2В')">Сохранить</button></td>
+  </tr>
+  <tr>
+    <td>3А</td>
+    <td>Кравцова Т.Н.</td>
+    <td>32</td>
+    <td contenteditable="true" data-class="3А" onblur="calculateSums()" id="absent-3А">0</td>
+    <td><button class="save-button" onclick="saveData('3А')">Сохранить</button></td>
+  </tr>
+  <tr>
+    <td>3Б</td>
+    <td>Колмагорова А.Д.</td>
+    <td>32</td>
+    <td contenteditable="true" data-class="3Б" onblur="calculateSums()" id="absent-3Б">0</td>
+    <td><button class="save-button" onclick="saveData('3Б')">Сохранить</button></td>
+  </tr>
+  <tr>
+    <td>3В</td>
+    <td>Кохан М.А.</td>
+    <td>34</td>
+    <td contenteditable="true" data-class="3В" onblur="calculateSums()" id="absent-3В">0</td>
+    <td><button class="save-button" onclick="saveData('3В')">Сохранить</button></td>
+  </tr>
+  <tr>
+    <td>4А</td>
+    <td>Шорохова И.С</td>
+    <td>32</td>
+    <td contenteditable="true" data-class="4А" onblur="calculateSums()" id="absent-4А">0</td>
+    <td><button class="save-button" onclick="saveData('4А')">Сохранить</button></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Всего</td>
+    <td id="sumTotalStudents">0</td>
+    <td id="sumTotalAbsent">0</td>
+  </tr>
+</table>
+
+<script>
+function calculateSums() {
+    const table = document.getElementById('mainTab');
+    const rows = table.getElementsByTagName('tr');
+    let totalStudents = 0;
+    let totalAbsent = 0;
+
+    for (let i = 1; i < rows.length - 1; i++) { // начиная с 1, заканчивая на предпоследней
+        const studentCount = parseInt(rows[i].cells[2].innerText) || 0; // Всего учащихся
+        const absentCount = parseInt(rows[i].cells[3].innerText) || 0; // Отсутствуют по болезни
+
+        totalStudents += studentCount;
+        totalAbsent += absentCount;
+    }
+
+    document.getElementById('sumTotalStudents').innerText = totalStudents;
+    document.getElementById('sumTotalAbsent').innerText = totalAbsent;
+}
+
+function openAdminPage() {
+    const password = prompt("Введите пароль для доступа к странице администратора:");
+    if (password === "admin123") { // Замените "admin123" на ваш желаемый пароль
+        alert("Добро пожаловать, администратор!");
+        // Открытие новой страницы (в данном случае используется alert вместо реального перехода)
+        // window.location.href = "admin_page.html"; // Ссылка на страницу администратора
+    } else {
+        alert("Неверный пароль!");
+    }
+}
+
+function saveData(className) {
+    const absentCount = document.getElementById(`absent-${className}`).innerText;
+    if (absentCount) {
+        localStorage.setItem(className, absentCount);
+        alert(`Данные для класса ${className} сохранены!`);
+    } else {
+        alert(`Введите число для класса ${className}.`);
+    }
+}
+
+function loadSavedData() {
+    const classes = ["1А", "1Б", "1В", "1Г", "1Д", "2А", "2Б", "2В", "3А", "3Б", "3В", "4А"];
+    classes.forEach(className => {
+        const savedData = localStorage.getItem(className);
+        if (savedData) {
+            document.getElementById(`absent-${className}`).innerText = savedData;
+        }
+    });
+}
+
+// Загрузка сохранённых данных при инициализации страницы
+window.onload = function() {
+    loadSavedData();
+    calculateSums(); // Пересчитываем суммы после загрузки данных
+};
+</script>
+
+</body>
+</html>
